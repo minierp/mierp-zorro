@@ -1,0 +1,107 @@
+<!--
+<iframe wnwg-src="{{downloadna}}" style="display:none"></iframe>
+-->
+<div style="height: auto;" nz-row>
+    <div nz-col nzSpan="2" wnwg-bind="ui.title || '进货单'">进货单</div>
+    <div nz-col nzSpan="4">
+        <button nz-button wnwg-class="{active:opt.QIAN === 0}" (click)="setQIAN();">
+            <span *ngIf="opt.QIAN !== 1">未結</span><span *ngIf="opt.QIAN === 1">己結</span></button>
+        <button nz-button wnwg-class="{active:opt.CHK === 0}" (click)="setCHKYN();">
+            <span *ngIf="opt.CHK !== 1">未审</span><span *ngIf="opt.CHK === 1">己审</span></button>
+        <button nz-button wnwg-class="{active:opt.QIAN === 99}" (click)="opt.QIAN = 99;
+                                opt.CHK = 99;
+                                LoadOrder()">全部</button>
+    </div>
+
+    <div nz-col nzSpan="10">
+        <!-- 这个加上编译 --prod 之后不能运行，会出现错误
+        <nz-dropdown>
+            <button nz-button nz-dropdown><span>日期</span><i nz-icon type="down"></i></button>
+            <ul nz-menu>
+                <li nz-menu-item>
+                    <a>开单日期</a>
+                </li>
+                <li nz-menu-item>
+                    <a>交货日期</a>
+                </li>
+            </ul>
+        </nz-dropdown>
+        <nz-range-picker (ngModelChange)="onChange($event)" nzShowTime></nz-range-picker> -->
+    </div>
+    <div nz-col nzSpan="8">
+        <a nz-button color="primary" href="#/edit/">新增</a>
+        <button type="button" nz-button color="secondary" (click)="opt.DTP = 'JHD';
+                                opt.STA = opt.STA + 1;
+                                (opt.STA > 2) ? opt.STA = 0 : 1;
+                                LoadOrder()"
+            data-toggle="button"><span *ngIf="opt.STA === 0">进度</span><span *ngIf="opt.STA === 1">未完</span><span *ngIf="opt.STA === 2">巳完</span></button>
+        <button type="button" nz-button color="secondary" (click)="opt.YND = !opt.YND;
+                                LoadOrder()"
+            data-toggle="button"><span *ngIf="!opt.YND">列表</span><span *ngIf="opt.YND">明细</span></button>
+        <button nz-button color="secondary" type="button" (click)="LoadOrder()">查询</button>
+        <button nz-button color="secondary" type="button" data-loading-tex="正在加载...">导出</button>
+    </div>
+</div>
+
+<div nz-row nzGutter="16">
+    <div nz-col nzSpan="4">
+        <input nz-input placeholder="料号" [(ngModel)]="opt.PID">
+    </div>
+    <div nz-col nzSpan="4">
+        <input nz-input placeholder="订单号" [(ngModel)]="opt.MID">
+    </div>
+    <div nz-col nzSpan="4">
+        <input nz-input placeholder="相关号" [(ngModel)]="opt.CPID">
+    </div>
+    <div nz-col nzSpan="4">
+        <input nz-input placeholder="厂商" [(ngModel)]="opt.CID">
+    </div>
+    <div nz-col nzSpan="4">
+        <input nz-input placeholder="操作员" [(ngModel)]="opt.UID">
+    </div>
+</div>
+
+<!-- <table wnwg-if="!opt.YND" class="table table-condensed table-bordered table-hover"> -->
+<div nz-row>
+    <nz-table [nzData]="delts" nzBordered nzSize="small">
+        <thead>
+            <tr>
+                <th class="text-center" nowrap>序号</th>
+                <th class="text-center" nowrap><a wnwg-click="order('SHMID')">订单号码</a></th>
+                <th class="text-center"><a wnwg-click="order('CLIID')">客户单号</a></th>
+                <th class="text-center"><a wnwg-click="order('SHM17')">相关单号</a></th>
+                <th class="text-center"><a wnwg-click="order('ACC01')">客户</a></th>
+                <th class="text-center"><a wnwg-click="order('SHM01')">开单日期</a></th>
+                <th class="text-center"><a wnwg-click="order('USERNAME')">操作员</a></th>
+                <th class="text-center"><a wnwg-click="order('SHM06')">仓库</a></th>
+                <th class="text-center"><a wnwg-click="order('QIAN')">状态</a></th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let delt of delts;let index= index">
+                <td class="text-center" ng-bind="index + 1">{{index+1}}</td>
+                <td>
+                    <a ui-sref="view({MID:delt.SHMID})">{{delt.SHMID}}</a>
+                </td>
+                <td>{{delt.CLIID}}</td>
+                <td>{{delt.SHM17}}</td>
+                <td>{{delt.ACC01}}</td>
+                <td>{{delt.SHM01}}</td>
+                <td>{{delt.USERNAME}}</td>
+                <td>{{delt.SHM13NA}}</td>
+                <td nowrap>
+                    <a wnwg-controller='showQianModel' (click)="qian($index)">{{delt.QIANT}}</a>
+                    <a wnwg-controller='showPYNModel' wnwg-class="{'text-dawnwger':delt.CHKPASS == 1}" (click)="cyn($index, delt.CHKPASS)">{{delt.CHKNA}}</a>
+                </td>
+                <td nowrap>
+                    <a ui-sref="edit({MID:delt.SHMID})">修改</a>
+                    <a wnwg-href="./print.php?MID={delt.SHMID}" target="print">列印</a>
+                    <a wnwg-controller='showDeltModel' wnwg-click="open($index)">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+<!-- <tm-pagination conf="paginationConf"></tm-pagination> -->

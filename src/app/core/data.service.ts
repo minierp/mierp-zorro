@@ -8,11 +8,23 @@ export class DataService {
   public data_url: string;
   public auth_url: string;
   constructor(private http: HttpClient, private auth:AuthGuardService) {
-    let lhostparr = location.host.split(":");
-    let lhost = lhostparr[0];
-    this.data_url = 'http://' + lhost + '/minierp/common/data.php/';
-    this.auth_url = 'http://' + lhost + '/minierp/common/auth.php/';
+    let lhost = this.GetApiPath();
   }
+  GetApiPath(){
+    let lhostparr = location.host.split(":"); // 本地开发 localhost GitHub api.minierp.cn
+    let lhost = lhostparr[0];
+    if(lhost.indexOf('github')>=0){
+      lhost='api.minierp.cn';
+      this.data_url = 'https://' + lhost + '/common/data.php/';
+      this.auth_url = 'https://' + lhost + '/common/auth.php/';
+    }else{
+      this.data_url = 'http://' + lhost + '/minierp/common/data.php/';
+      this.auth_url = 'http://' + lhost + '/minierp/common/auth.php/';
+    }
+    console.log(lhost);
+    return lhost;
+  }
+
   async GetData(path:string,par:any) { 
     let userdata = await this.GetUrl(path,par);
     let stat = userdata['stat'];

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { User } from "../domain/entities";
 @Injectable()
 export class UserService {
-  private api_url: string;
   constructor(private http: HttpClient,private data:DataService) {
 
   }

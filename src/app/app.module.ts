@@ -19,7 +19,7 @@ import {AppLogin} from './home/login';
 import {routing} from './app.routes';
 //import {MaterialModule } from "./material.module";
 //import {FlexLayoutModule} from '@angular/flex-layout';
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
@@ -33,7 +33,7 @@ registerLocaleData(en);
   providers: [
     {provide: 'auth', useClass: AuthService}, AuthGuardService,DataService,
     {provide: 'user', useClass: UserService},
-    {provide: NZ_I18N, useValue: en_US }
+    {provide: NZ_I18N, useValue: zh_CN }
   ],
   bootstrap: [AppRoot]
 })

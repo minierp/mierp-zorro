@@ -14,7 +14,7 @@
     </div>
 
     <div nz-col nzSpan="10">
-        <!-- 这个加上编译 --prod 之后不能运行，会出现错误
+        <!-- 这个加上编译 --prod 之后不能运行，会出现错误 -->
         <nz-dropdown>
             <button nz-button nz-dropdown><span>日期</span><i nz-icon type="down"></i></button>
             <ul nz-menu>
@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </nz-dropdown>
-        <nz-range-picker (ngModelChange)="onChange($event)" nzShowTime></nz-range-picker> -->
+        <nz-range-picker (ngModelChange)="onChange($event)" nzShowTime></nz-range-picker> 
     </div>
     <div nz-col nzSpan="8">
         <a nz-button color="primary" href="#/edit/">新增</a>
@@ -63,7 +63,7 @@
 
 <!-- <table wnwg-if="!opt.YND" class="table table-condensed table-bordered table-hover"> -->
 <div nz-row>
-    <nz-table [nzData]="delts" nzBordered nzSize="small">
+    <nz-table #list [nzData]="delts" nzBordered nzSize="small">
         <thead>
             <tr>
                 <th class="text-center" nowrap>序号</th>
@@ -79,7 +79,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let delt of delts;let index= index">
+            <tr *ngFor="let delt of list.data;let index= index">
                 <td class="text-center" ng-bind="index + 1">{{index+1}}</td>
                 <td>
                     <a ui-sref="view({MID:delt.SHMID})">{{delt.SHMID}}</a>

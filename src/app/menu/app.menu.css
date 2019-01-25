@@ -1,70 +1,57 @@
 .logo {
     height: 100%;
-margin-left: 18px;
-margin-right: 18px;
-display: flex;
-align-items: center;
-justify-content: center;
-  }
-  nz-header{
+    margin-left: 1px;
+    margin-right: 1px;
+    /*width: 90px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nz-header {
     padding: 0;
-    z-index: 2; /* relative　sider 会盖住 header 或者 另设zindex */
-    font-size: 14px;
+    z-index: 1020;
+    /* relative　sider 会盖住 header 或者 另设zindex */
+    font-size: 1.25rem;
     cursor: pointer;
     width: 100%;
-    background:#fff !important;
+    background: #fff !important;
     display: flex;
-    align-items:center;
-    position:fixed; /* 固定头部 */
-  }
-  nz-sider{
-    background:#fff !important;
-/*    padding: 0;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    margin-bottom: 0.25rem;
+    /* 固定头部 */
+    border-bottom: 1px solid #e1e6ef;
+    padding: 0.5rem 0.5rem;
+}
+
+nz-header>div {margin-right: 15px;}
+
+.fidname {
+    font-size: 1.75rem;
+}
+
+nz-sider {
+    background: #fff !important;
+    /*    padding: 0;
     color: #fff;
     background: #1890ff !important;
     display: flex;
     align-items: center;*/
-    /*position:absolute!important; */ /* relative　会盖住 header 或者 另设zindex */
-  }
-  .main {
-    background:#fff !important;
-    margin-top: 64px;
-  }
-.sidenav {
-  width: 175px;
+    /*position:absolute!important; */
+    /* relative　会盖住 header 或者 另设zindex */
 }
+
+.main {
+    background: #fff !important;
+    margin-top: 64px;
+}
+
 .topmenu-icon {
     padding: 0 14px;
-  }
-  
+}
+
 .topmenu-spacer {
     flex: 1 1 auto;
-  }
-
-/*
-.header {
-    grid-area: h;
 }
-.main {
-    grid-area: m;
-}
-.sidebar {
-    grid-area: s;
-}
-.footer {
-    grid-area: f;
-}
-.container {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: grid;    
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 50px auto 50px;
-  grid-gap: 0px;
-  grid-template-areas: 
-  "h h h h h h h h h h h h"
-  "s s m m m m m m m m m m  "
-  "s s f f f f f f f f f f ";
-} */

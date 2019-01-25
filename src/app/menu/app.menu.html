@@ -1,76 +1,22 @@
-<!-- <nz-layout>
-  <nz-header>header</nz-header>
-  <nz-layout class="main">
-    <nz-sider>left sidebar</nz-sider>
-    <nz-content>main content</nz-content>
-    <nz-sider>right sidebar</nz-sider>
-  </nz-layout>
-  <nz-footer>footer</nz-footer>
-</nz-layout> -->
 <nz-layout>
-  <nz-header>
-    <div class="logo"><img alt="MiERP" src="./assets/img/logo140.png" /></div>
-    <nz-divider nzType="vertical"></nz-divider>
-    <div>{{FactName}}</div>
-    <nz-divider nzType="vertical"></nz-divider>
-    <span class="topmenu-spacer"></span>
-    <span>{{Username}}</span>
-    <a  href="#login"><i nz-icon [type]="'logout'"></i></a>
-  </nz-header>
-  <nz-layout class="main">
-    <nz-sider [nzWidth]="200">
-      <ul nz-menu [nzMode]="'inline'">
-          <a nz-menu-item *ngFor="let delt of menuleft;let index= index" href="#{{delt.url}}">{{delt.name}}</a>
-          <a nz-menu-item href="#login">退出系统</a>
-      </ul>
-    </nz-sider>
-    <nz-content>
-      <app-main>主画面</app-main>
-    </nz-content>
-
-  </nz-layout>
+    <nz-header>
+        <div class="logo"><img alt="MiERP" src="./assets/img/logo140.png" /></div>
+        <nz-divider nzType="vertical"></nz-divider>
+        <div class=fidname>{{FactName}}</div>
+        <nz-divider nzType="vertical"></nz-divider>
+        <div class="topmenu-spacer"></div>
+        <div>{{Username}}</div>
+        <div><a href="#login"><i nz-icon [type]="'logout'"></i></a></div>
+    </nz-header>
+    <nz-layout class="main">
+        <nz-sider nzWidth="175px">
+            <ul nz-menu [nzMode]="'inline'">
+                <a nz-menu-item *ngFor="let delt of menuleft;let index= index" href="#{{delt.url}}">{{delt.name}}</a>
+                <a nz-menu-item href="#login">退出系统</a>
+            </ul>
+        </nz-sider>
+        <nz-content>
+            <app-main>主画面</app-main>
+        </nz-content>
+    </nz-layout>
 </nz-layout>
-<!--
-<div class="container">
-    <div class="header">HEADER</div>
-    <div class="sidebar">MENU</div>
-    <div class="main">CONTENT</div>
-    <div class="footer">FOOTER</div>
-</div>
-
-
-<mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-        <mat-toolbar>
-            <span class='logo'>
-                <a class="navbar-brand" routerLink="/">
-                    <img fxHide="false" fxHide.gt-sm alt="MiERP" src="./assets/img/logomi.png" />
-                    <img fxShow="false" fxShow.gt-sm alt="MiniERP" src="./assets/img/logo140.png" />
-                </a>
-            </span>
-        </mat-toolbar>
-        <mat-nav-list>
-            <a mat-list-item *ngFor="let delt of menuleft;let index= index" href="#{{delt.url}}">{{delt.name}}</a>
-            <a mat-list-item href="#login">退出系统</a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar>
-            <mat-toolbar-row>
-                <span>
-                    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                    </button>
-                </span>
-                <span fxShow="false" fxShow.gt-sm>{{FactName}}</span>
-                <span class="topmenu-spacer"></span>
-                <span>{{Username}}</span>
-                <mat-icon class="topmenu-icon">favorite</mat-icon>
-                <mat-icon class="topmenu-icon">logout</mat-icon>
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <app-main>主画面</app-main>
-    </mat-sidenav-content>
-</mat-sidenav-container>
--->

@@ -12,7 +12,7 @@ import {AuthService} from './core/auth.service';
 import {UserService} from './core/user.service';
 import {AuthGuardService} from './core/auth-guard.service';
 import { DataService } from './core/data.service';
-import {AppComponent} from './jinghuo/app.component';
+import {MainMenu} from './menu/main.menu';
 import {AppMenu} from './menu/app.menu';
 import {AppRoot} from './app.root';
 import {AppLogin} from './home/login';
@@ -27,7 +27,7 @@ registerLocaleData(en);
 
 @NgModule({
   declarations:
-      [AppComponent, AppLogin, AppMenu, AppRoot],
+      [MainMenu, AppLogin, AppMenu, AppRoot],
   imports:
       [BrowserModule,BrowserAnimationsModule, ReactiveFormsModule,FormsModule, HttpClientModule, routing, NgZorroAntdModule.forRoot()],
   providers: [

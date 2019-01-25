@@ -4,12 +4,12 @@ import {Component, Pipe, PipeTransform} from '@angular/core';
 import { DataService } from '../core/data.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-list',
+  templateUrl: './jinghuo.component.html',
+  styleUrls: ['./jinghuo.component.css'],
 })
 
-export class AppComponent {
+export class JinghuoComponent {
   loaded: boolean = true;
   opt: any = {CHK: 99, QIAN: 0, STA: 0};
   model: any;

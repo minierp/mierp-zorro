@@ -5,18 +5,20 @@ import {NgModule} from '@angular/core';
 
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 //import {HttpModule} from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import 'hammerjs';
 
 import {AuthService} from './core/auth.service';
-import {UserService} from './core/user.service';
+//import {UserService} from './core/user.service';
 import {AuthGuardService} from './core/auth-guard.service';
-import { DataService } from './core/data.service';
+import {DataService } from './core/data.service';
+import {AuthInterceptor } from './core/AuthInterceptor.service';
 import {MainMenu} from './menu/main.menu';
 import {AppMenu} from './menu/app.menu';
 import {AppRoot} from './app.root';
 import {AppLogin} from './home/login';
 import {routing} from './app.routes';
+import {JinghuoComponent} from './jinghuo/jinghuo.component';
 //import {MaterialModule } from "./material.module";
 //import {FlexLayoutModule} from '@angular/flex-layout';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
@@ -27,12 +29,13 @@ registerLocaleData(en);
 
 @NgModule({
   declarations:
-      [MainMenu, AppLogin, AppMenu, AppRoot],
+      [MainMenu, AppLogin, AppMenu, AppRoot,JinghuoComponent],
   imports:
       [BrowserModule,BrowserAnimationsModule, ReactiveFormsModule,FormsModule, HttpClientModule, routing, NgZorroAntdModule.forRoot()],
   providers: [
     {provide: 'auth', useClass: AuthService}, AuthGuardService,DataService,
-    {provide: 'user', useClass: UserService},
+    //{provide: 'user', useClass: UserService},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     {provide: NZ_I18N, useValue: zh_CN }
   ],
   bootstrap: [AppRoot]

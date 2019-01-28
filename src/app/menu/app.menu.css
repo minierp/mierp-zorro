@@ -8,6 +8,10 @@
     justify-content: center;
 }
 
+nz-layout {
+    height: 100%;
+}
+
 nz-header {
     padding: 0;
     z-index: 1020;
@@ -26,7 +30,18 @@ nz-header {
     padding: 0.5rem 0.5rem;
 }
 
-nz-header>div {margin-right: 15px;}
+nz-header>div {
+    margin-right: 15px;
+}
+
+@media (max-width: 576px) {
+    .fidname {
+        display: none;
+    }
+    nz-divider{
+        display: none;
+    }
+}
 
 .fidname {
     font-size: 1.75rem;
@@ -43,13 +58,13 @@ nz-sider {
     /* relative　会盖住 header 或者 另设zindex */
 }
 
+nz-content {
+    height: 100%;
+}
+
 .main {
     background: #fff !important;
     margin-top: 64px;
-}
-
-.topmenu-icon {
-    padding: 0 14px;
 }
 
 .topmenu-spacer {

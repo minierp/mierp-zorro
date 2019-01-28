@@ -15,17 +15,15 @@ import {AbstractControl,
 export class AppLogin {
   public user = { uname: 'admin', upass: '', fid: '20170201' };
   private auth: Auth;
-  private api_url: string;
   validateForm:FormGroup;
-  constructor(@Inject('auth') private service, private router: Router,private fb: FormBuilder) {
-    let lhostparr = location.host.split(":");
-    let lhost = lhostparr[0];
-    this.api_url = 'http://' + lhost + '/minierp/common/auth.php/';
+  constructor(@Inject('auth') private service,private router: Router,private fb: FormBuilder) {
+    this.service.ClearToken();
   }
   async onclick() {
     let logyn = await this.service.Login(this.user.uname, this.user.upass, this.user.fid);
     if (logyn) { //正确登录
-      let url = localStorage.getItem('redirectUre');
+     // let url = localStorage.getItem('redirectUre');
+      let url= this.service.GetRedirectUre();
       if (url) { // 空或 null
         this.router.navigate([url]);
       }

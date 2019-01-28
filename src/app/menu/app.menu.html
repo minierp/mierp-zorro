@@ -9,14 +9,15 @@
         <div><a href="#login"><i nz-icon [type]="'logout'"></i></a></div>
     </nz-header>
     <nz-layout class="main">
-        <nz-sider nzWidth="175px">
+        <nz-sider nzWidth="145">
             <ul nz-menu [nzMode]="'inline'">
-                <a nz-menu-item *ngFor="let delt of menuleft;let index= index" href="#{{delt.url}}">{{delt.name}}</a>
+                <a nz-menu-item *ngFor="let delt of menuleft;let index= index"  [routerLink]="delt.url"  target="{{delt.target}}">{{delt.name}}</a>
                 <a nz-menu-item href="#login">退出系统</a>
             </ul>
         </nz-sider>
         <nz-content>
-            <app-main>主画面</app-main>
+            <!-- <app-main>主画面</app-main> -->
+            <router-outlet></router-outlet>
         </nz-content>
     </nz-layout>
 </nz-layout>

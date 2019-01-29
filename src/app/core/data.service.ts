@@ -38,8 +38,11 @@ export class DataService {
     for (var key in opt) {
       par += '&' + key + '=' + opt[key];
     }
-    let DataRoot = this.auth_url + dtp;
-    let loadurl = DataRoot + '/?' + par;//+ '&TOKEN=' + token;;
+    let loadurl = this.auth_url + dtp;
+    if (par != '') {
+      loadurl = loadurl + '/?' + par;//+ '&TOKEN=' + token;;
+    }
+
 
     let data = await this.http.get(loadurl).toPromise();
     let stat = data['stat'];
@@ -50,13 +53,14 @@ export class DataService {
   }
 
   async GetUrl(dtp: string, opt: any) {
-    //let token =this.service.GetToken();
     let par: string = '';
     for (var key in opt) {
       par += '&' + key + '=' + opt[key];
     }
-    let DataRoot = this.data_url + dtp;
-    let loadurl = DataRoot + '/?' + par;//+ '&TOKEN=' + token;;
+    let loadurl = this.data_url + dtp;
+    if (par != '') {
+      loadurl = loadurl + '/?' + par;//+ '&TOKEN=' + token;;
+    }
 
     let data = await this.http.get(loadurl).toPromise();
     let stat = data['stat'];

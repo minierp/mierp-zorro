@@ -15,15 +15,15 @@ export class AuthInterceptor implements HttpInterceptor {
             let userobj = JSON.parse(userstr);
             token = userobj.token;
         }
-        let url = req.url;
+        //let url = req.url;
         //console.log(req);
-        if (token) {
-            url = req.url + '&TOKEN=' + token;
-        }
-        //const newReq = req.clone({
-        //    headers: req.headers.set('HTTP_MITOKEN', token)
-        //  });
-        const newReq = req.clone({ url });  //目前加在最后做参数   跨域访问-预请求及跨域问题 XHR OPTIONS
+        //if (token) {
+        //    url = req.url + '&TOKEN=' + token;
+        //}
+        const newReq = req.clone({
+            headers: req.headers.set('HTTP_MITOKEN', token)   //跨域访问-预请求及跨域问题 XHR OPTIONS
+          });
+        //const newReq = req.clone({ url });  //目前加在最后做参数   跨域访问-预请求及跨域问题 XHR OPTIONS
         //console.log("new headers", newReq.headers.keys());
         return next.handle(newReq);
     }
